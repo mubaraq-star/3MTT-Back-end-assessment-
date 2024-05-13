@@ -14,7 +14,7 @@
   "description": "Blog Api endpoint",
   "main": "app.js",
   "scripts": {
-    "test": "jest",
+    "test":  "jest --detectOpenHandles",
     "start": "nodemon app.js",
     "start-server": "node app.js"
   },
