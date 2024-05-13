@@ -41,3 +41,7 @@ app.use((err, req, res, next) => {
 app.listen(CONFIG.PORT, ()=>{
     console.log(`server started on http://localhost:${CONFIG.PORT}`);
 })
+
+
+
+module.exports = app;
