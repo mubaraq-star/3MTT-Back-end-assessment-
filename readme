@@ -1,0 +1,19 @@
+Entity-Relationship Diagram (ERD) for a simple blogging system with three main entities: User, Blog, and Tag:
+
+sql
+Copy code
++---------------------+            +---------------------+       +---------------------+
+|        User         |            |        Blog         |       |         Tag         |
++---------------------+            +---------------------+       +---------------------+
+|        id           |            |        id           |       |         id          |
+|      username       |<-- 1:N -->|      title          |<-- N:1|      name           |
+|      email          |            |      content        |       +---------------------+
+|      password       |            |      author         |<--+   |      blogs[]        |
+|                     |            |      state          |       +---------------------+
+|                     |            |      timestamp      |
++---------------------+            +---------------------+
+Each User can have multiple Blogs (One-to-Many relationship).
+Each Blog can have one User as its author (Many-to-One relationship).
+Each Blog can have multiple Tags, and each Tag can be associated with multiple Blogs (Many-to-Many relationship).
+The primary keys are denoted by "id" for each entity.
+Foreign keys are indicated by arrows connecting related entities, showing the direction of the relationship.

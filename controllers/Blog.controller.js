@@ -1,8 +1,6 @@
 // blogController.js
 
-const Blog = require('../models/Blog.js');
-// const mongoosePaginate = require('mongoose-paginate-v2');
-// blogSchema.plugin(mongoosePaginate);
+const Blog = require("../models/Blog.js");
 
 exports.getAllPublishedBlogs = async (req, res, next) => {
   try {
@@ -10,25 +8,23 @@ exports.getAllPublishedBlogs = async (req, res, next) => {
     res.json(blogs);
     console.log(blogs);
   } catch (error) {
-    console.error(error);
-    next(error); // Pass the error to the error handling middleware
+    logger.error(error);
+    next(error);
   }
 };
-
-
-
 
 exports.getPublishedBlogById = async (req, res, next) => {
   try {
     const blog = await Blog.findById(req.params.id);
-    if (!blog || blog.state !== 'published') {
-      return res.status(404).json({ error: 'Blog not found' });
+    if (!blog || blog.state !== "published") {
+      return res.status(404).json({ error: "Blog not found" });
     }
     res.json(blog);
   } catch (error) {
     next(error);
   }
 };
+
 // creating Blog posts with the defined schemas
 exports.createBlog = async (req, res, next) => {
   try {
@@ -40,7 +36,6 @@ exports.createBlog = async (req, res, next) => {
   }
 };
 
-
 // controllers/BlogController.js
 
 exports.updateBlogState = async (req, res, next) => {
@@ -48,15 +43,12 @@ exports.updateBlogState = async (req, res, next) => {
     const blogId = req.params.id;
     const newState = req.body.state;
 
-    // Find the blog by ID
     const blog = await Blog.findById(blogId);
 
-    // Check if the blog exists
     if (!blog) {
-      return res.status(404).json({ error: 'Blog not found' });
+      return res.status(404).json({ error: "Blog not found" });
     }
 
-    // Update the state of the blog
     blog.state = newState;
     await blog.save();
 
@@ -73,15 +65,12 @@ exports.editBlog = async (req, res, next) => {
     const blogId = req.params.id;
     const updatedData = req.body;
 
-    // Find the blog by ID
     const blog = await Blog.findById(blogId);
 
-    // Check if the blog exists
     if (!blog) {
-      return res.status(404).json({ error: 'Blog not found' });
+      return res.status(404).json({ error: "Blog not found" });
     }
 
-    // Update the blog with the new data
     Object.assign(blog, updatedData);
     await blog.save();
 
@@ -90,7 +79,6 @@ exports.editBlog = async (req, res, next) => {
     next(error);
   }
 };
-
 
 // controllers/blogController.js
 
@@ -103,27 +91,25 @@ exports.deleteBlog = async (req, res, next) => {
 
     // Check if the blog exists
     if (!deletedBlog) {
-      return res.status(404).json({ error: 'Blog not found' });
+      return res.status(404).json({ error: "Blog not found" });
     }
 
-    res.json({ message: 'Blog deleted successfully' });
+    res.json({ message: "Blog deleted successfully" });
   } catch (error) {
     next(error);
   }
 };
 
-
 exports.getAllBlogs = async (req, res, next) => {
-  
-      try {
-        const posts = await Blog.find({
-          authorId: req.user,
-        })
-        res.status(200).json({
-          status: 'success',
-          posts,
-        });
-      } catch (err) {
-        throw err;
-      }
-    };
+  try {
+    const posts = await Blog.find({
+      authorId: req.user,
+    });
+    res.status(200).json({
+      status: "success",
+      posts,
+    });
+  } catch (err) {
+    throw err;
+  }
+};

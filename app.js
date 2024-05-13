@@ -39,7 +39,7 @@ app.use((err, req, res, next) => {
 
 // Connect to Server
 app.listen(CONFIG.PORT, ()=>{
-    console.log(`server started on http://localhost:${CONFIG.PORT}`);
+    logger.info(`server started on http://localhost:${CONFIG.PORT}`);
 })
 
 
