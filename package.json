@@ -4,6 +4,7 @@
     "crypto-js": "^4.2.0",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.3.4",
     "mongoose-paginate-v2": "^1.8.0",
     "nodemon": "^3.1.0",
@@ -14,7 +15,7 @@
   "description": "Blog Api endpoint",
   "main": "app.js",
   "scripts": {
-    "test":  "jest --detectOpenHandles",
+    "test": "jest --detectOpenHandles",
     "start": "nodemon app.js",
     "start-server": "node app.js"
   },
